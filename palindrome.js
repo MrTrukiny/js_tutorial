@@ -1,6 +1,11 @@
-// Reverses a string.
+/* // Reverses a string.
 function reverse(string) {
     return Array.from(string).reverse().join("");
+} */
+
+// Adds `reverse` to all strings.
+String.prototype.reverse = function() {
+    return Array.from(this).reverse().join("");
 }
 
 // Returns true for a palindrome; false otherwise.
@@ -30,7 +35,7 @@ function Phrase(content) {
 
     // Returns true if the phrase is a palindrome, false otherwise.
     this.palindrome = function palindrome() {
-        return this.processedContent() === reverse(this.processedContent());
+        return this.processedContent() === this.processedContent().reverse();
     }
 
 }
