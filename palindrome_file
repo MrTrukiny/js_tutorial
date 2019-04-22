@@ -1,0 +1,18 @@
+#!/usr/bin/node
+
+let fs = require("fs");
+let Phrase = require("mrtrukiny-palindrome");
+
+let text = fs.readFileSync("phrases.txt", "utf-8");
+let stream = fs.createWriteStream("palindromes.txt", "utf-8");
+
+stream.once('open', function(fd) {
+    text.split("\n").forEach(function(line) {
+    let phrase = new Phrase(line);
+        if (phrase.palindrome()) {
+            stream.write(`${line}\n`);
+            console.log(`Palindrome detected: ${line}`);
+        };
+    });
+    stream.end();
+});
